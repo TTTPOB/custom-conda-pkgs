@@ -1,0 +1,43 @@
+context: {}
+
+package:
+  name: python-circos
+  version: 0.3.0
+
+source:
+- url: https://github.com/ponnhide/pyCircos/archive/refs/tags/v0.3.0.tar.gz
+  sha256: b3c916960a78887c27103502c2b3ca43351412bed6d2a0c8d45ed76f3ad51c24
+
+build:
+  noarch: python
+  script: python -m pip install .
+
+requirements:
+  host:
+  - python >=3.7
+  - pip
+  run:
+  - python >=3.7
+  - matplotlib >=3.4
+  - biopython >=1.78
+
+tests: []
+
+about:
+  homepage: https://github.com/ponnhide/pyCircos
+  summary: Python library for drawing Circos plots using Matplotlib
+  description: |
+    Circos is one of the most popular software for visualizing genomic
+    similarities and features. However, its execution process is complicated and
+    requires multiple original config files for the visualizations.
+    Additionally, Circos is written in Perl, which limits its integration with
+    other software for biological analysis. On the other hand, Python has been
+    applied for various biological software packages. Therefore, by combining
+    these packages, researchers can complete most of the required analysis.
+    Nevertheless, Python lacks a library for drawing Circos plots, even though
+    Circos software has been developed for more than a decade. Here, we provide
+    a python Matplotlib based circular genome visualization package '"pyCircos."
+    Users easily and quickly visualize genomic features and comparative genome
+    analysis results by specifying annotated sequence files such as GenBank
+    files. 
+  license: GPL-3.0-or-later

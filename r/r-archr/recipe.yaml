@@ -1,0 +1,89 @@
+context: {}
+
+package:
+  name: r-archr
+  version: 1.0.2.20240226
+
+source:
+- url: https://github.com/GreenleafLab/ArchR/archive/d9e741c980c7c64e5348c97a74d146cc95f8ba76.zip
+  sha256: aef7bd08d55494348cac8b9e0645a71a22a41dacbb7a7843cd939f1f31ee6d87
+
+build:
+  script: R CMD INSTALL --build .
+
+requirements:
+  host:
+    - r-base
+    - r-ggplot2
+    - bioconductor-summarizedexperiment
+    - r-data.table
+    - r-matrix
+    - bioconductor-rhdf5
+    - r-magrittr
+    - bioconductor-s4vectors >= 0.9.25
+    - bioconductor-biocgenerics
+    - r-rcpp >= 0.12.16
+    - r-matrixstats
+    - r-plyr
+    - r-nabor
+    - bioconductor-motifmatchr
+    - bioconductor-chromvar
+    - r-uwot
+    - r-ggrepel
+    - bioconductor-rsamtools
+    - r-gtable
+    - r-gtools
+    - r-stringr
+    - r-gridextra
+    - bioconductor-biostrings
+    - bioconductor-complexheatmap
+    - bioconductor-genomicranges
+  run:
+    - r-ggplot2
+    - bioconductor-summarizedexperiment
+    - r-data.table
+    - r-matrix
+    - bioconductor-rhdf5
+    - r-magrittr
+    - bioconductor-s4vectors >= 0.9.25
+    - bioconductor-biocgenerics
+    - r-rcpp >= 0.12.16
+    - r-matrixstats
+    - r-plyr
+    - r-nabor
+    - bioconductor-motifmatchr
+    - bioconductor-chromvar
+    - r-uwot
+    - r-ggrepel
+    - bioconductor-rsamtools
+    - r-gtable
+    - r-gtools
+    - r-stringr
+    - r-gridextra
+    - bioconductor-biostrings
+    - bioconductor-complexheatmap
+    - bioconductor-genomicranges
+    - r-base
+
+tests:
+- script:
+  - Rscript -e 'library("ArchR")'
+
+about:
+  homepage: https://github.com/GreenleafLab/ArchR/
+  summary: |-
+    ArchR is a full-featured R package for processing and analyzing single-cell
+    ATAC-seq data. ArchR provides the most extensive suite of scATAC-seq
+    analysis tools of any software available. Additionally, ArchR excels in both
+    speed and resource usage, making it possible to analyze 1 million cells in 8
+    hours on a MacBook Pro laptop.
+  description: |-
+    ArchR is a full-featured R package for processing and analyzing single-cell
+    ATAC-seq data. ArchR provides the most extensive suite of scATAC-seq
+    analysis tools of any software available. Additionally, ArchR excels in both
+    speed and resource usage, making it possible to analyze 1 million cells in 8
+    hours on a MacBook Pro laptop.
+  license: MIT
+  license_file: LICENSE
+  repository: https://github.com/GreenleafLab/ArchR/
+

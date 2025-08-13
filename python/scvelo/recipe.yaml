@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  name: scvelo
+  version: 0.3.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.io/packages/source/${{ name[0] }}/${{ name }}/scvelo-${{ version }}.tar.gz
+  sha256: eab08941b04e5cf1c72584c0dc6055b63a05b36e2dfa0b77220df9e5f3f0f86b
+
+build:
+  number: 1
+  noarch: python
+  script: python -m pip install . -vv
+
+requirements:
+  host:
+    - python >=3.8
+    - pip
+    - hatchling
+  run:
+    - python >=3.8
+    - anndata >=0.7.5
+    - scanpy >=1.5
+    - loompy >=2.0.12
+    - umap-learn >=0.3.10
+    - numba >=0.41.0
+    - numpy >=1.17
+    - pandas >=1.1.1,!=1.4.0
+    - scipy >=1.4.1
+    - scikit-learn >=0.21.2 #,<1.2.0
+    - scvi-tools >=0.20.1,<1.1.6
+    - matplotlib-base >=3.3.0
+
+tests:
+  - python:
+      imports:
+        - scvelo
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: RNA velocity generalized through dynamical modeling
+  description: |
+    A scalable toolkit for RNA velocity analysis in single-cells.
+  homepage: https://github.com/theislab/scvelo
+  repository: https://github.com/theislab/scvelo
+  documentation: https://scvelo.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - WeilerP
+

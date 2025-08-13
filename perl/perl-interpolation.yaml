@@ -1,0 +1,35 @@
+context:
+  version: "0.74"      # latest CPAN version
+
+package:
+  name: perl-interpolation
+  version: ${{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/J/JE/JENDA/Interpolation-${{ version }}.tar.gz
+  sha256: 2b5a58987f7a1ffe234f111fe97b98b26e43fb5491c8e9083cf4d50bebde7876
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - perl Makefile.PL INSTALLDIRS=vendor NO_PERLLOCAL=1 NO_PACKLIST=1
+    - make
+    - make test
+    - make install
+
+requirements:
+  build:
+    - make
+  host:
+    - perl
+
+tests:
+  - perl:
+      uses:
+        - Interpolation
+
+about:
+  license: GPL-1.0-or-later OR Artistic-1.0-Perl
+  summary: Arbitrary string interpolation semantics (using tie())
+  homepage: https://metacpan.org/pod/Interpolation

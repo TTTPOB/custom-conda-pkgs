@@ -1,0 +1,54 @@
+context: {}
+
+package:
+  name: r-httpgd
+  version: 2.0.2
+
+source:
+- url: https://cran.r-project.org/src/contrib/httpgd_2.0.2.tar.gz
+  sha256: 4f2764ebc1b29a70dcb4a2a1ed4b054713a0436fabce80162766fa9e144aec78
+
+build:
+  script: R CMD INSTALL --build .
+
+requirements:
+  build:
+  - ${{ compiler('c') }}
+  - ${{ compiler('cxx') }}
+  - make
+  host:
+  - r-base
+  - r-base >=3.2.0
+  - r-unigd
+  - r-cpp11 >=0.2.4
+  - r-asioheaders >=1.22.1
+  run:
+  - r-base
+  - r-unigd
+  # -  r-testthat  # suggested
+  # -  r-xml2 >=1.0.0  # suggested
+  # -  r-knitr  # suggested
+  # -  r-rmarkdown  # suggested
+  # -  r-covr  # suggested
+  # -  r-future  # suggested
+  # -  r-httr  # suggested
+  # -  r-jsonlite  # suggested
+
+tests:
+- script:
+  - Rscript -e 'library("httpgd")'
+
+about:
+  homepage: https://github.com/nx10/httpgd
+  summary: A 'HTTP' Server Graphics Device
+  description: |-
+    A graphics device for R that is accessible via network
+    protocols. This package was created to make it easier to embed
+    live R graphics in integrated development environments and
+    other applications. The included 'HTML/JavaScript' client (plot
+    viewer) aims to provide a better overall user experience when
+    dealing with R graphics. The device asynchronously serves
+    graphics via 'HTTP' and 'WebSockets'.
+  license: GPL-2.0-or-later
+  repository: https://github.com/cran/httpgd
+

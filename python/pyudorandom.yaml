@@ -1,0 +1,34 @@
+context:
+  version: "1.0.0"
+
+package:
+  name: "pyudorandom"
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.io/packages/source/p/pyudorandom/pyudorandom-${{ version }}.tar.gz
+    sha256: f30a093a0170c15f9c7f87eb29f71f0f5fde995528b7c6dc4606d389e8c37755
+
+build:
+  # Thanks to `noarch: python` this package works on all platforms
+  noarch: python
+  script:
+    - python -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python>=3
+  run:
+    - python>=3
+
+tests:
+  - python:
+      imports:
+        - pyudorandom
+      pip_check: true
+
+about:
+  homepage: https://github.com/mewwts/pyudorandom
+  license: MIT
+  repository: https://github.com/mewwts/pyudorandom
