@@ -7,7 +7,11 @@ source:
   sha256: 1df76ab42fa3ab4cbf1c8e27aabeb352e939a5b861f6853987e8b8daf73b0ab3
 
 build:
+  string: ${{ "r" + r_base|replace(".", "") }}h${{ hash }}
   script: R CMD INSTALL --build .
+  variant:
+    use_keys:
+      - r_base
 requirements:
   build:
     - ${{ compiler('c') }}
@@ -16,7 +20,7 @@ requirements:
     - pkg-config
     - autoconf
   host:
-    - r-base >=3.2.0
+    - r-base
     - r-cpp11 >=0.2.4
     - r-systemfonts >=1.0.0
     - xorg-xproto
