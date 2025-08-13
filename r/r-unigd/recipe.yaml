@@ -1,48 +1,50 @@
-context: {}
-
 package:
   name: r-unigd
   version: 0.1.3
 
 source:
-- url: https://cran.r-project.org/src/contrib/unigd_0.1.3.tar.gz
+  url: https://cran.r-project.org/src/contrib/unigd_0.1.3.tar.gz
   sha256: 1df76ab42fa3ab4cbf1c8e27aabeb352e939a5b861f6853987e8b8daf73b0ab3
 
 build:
   script: R CMD INSTALL --build .
-
 requirements:
   build:
-  - ${{ compiler('c') }}
-  - ${{ compiler('cxx') }}
-  - make
-  - pkg-config
-  - autoconf
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - make
+    - pkg-config
+    - autoconf
   host:
-  - r-base >=3.2.0
-  - r-cpp11 >=0.2.4
-  - r-systemfonts >=1.0.0
-  - cairo
-  - libpng
-  - libtiff
-  - expat
-  - zlib
+    - r-base >=3.2.0
+    - r-cpp11 >=0.2.4
+    - r-systemfonts >=1.0.0
+    - xorg-xproto
+    - xorg-kbproto
+    - xorg-xextproto
+    - xorg-renderproto
+    - cairo
+    - freetype
+    - libtiff
+    - expat
+    - libpng
+    - zlib
+    - fontconfig
   run:
-  - r-base
-  - r-systemfonts >=1.0.0
-  - r-cpp11 >=0.2.4
+    - r-base
+    - r-cpp11 >=0.2.4
+    - r-systemfonts >=1.0.0
 
 tests:
-- script:
-  - Rscript -e 'library("unigd")'
+  - script:
+      - Rscript -e 'library("unigd")'
 
 about:
   homepage: https://github.com/nx10/unigd
   summary: Universal Graphics Device
-  description: |-
+  description: |
     A unified R graphics backend. Render R graphics fast and
     easy to many common file formats. Provides a thread safe 'C'
     interface for asynchronous rendering of R graphics.
   license: GPL-2.0-or-later
   repository: https://github.com/cran/unigd
-
