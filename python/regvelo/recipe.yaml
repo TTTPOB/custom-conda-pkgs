@@ -1,0 +1,50 @@
+context:
+  version: 0.3.0
+
+package:
+  name: regvelo
+  version: ${{ version }}
+
+source:
+- url: https://pypi.org/packages/source/r/regvelo/regvelo-${{ version }}.tar.gz
+  sha256: 2c35819f3999a32f9587b7b19b6f21d7d224b35ce66f7c8775cb4775d796430b
+
+build:
+  script: ${{ PYTHON }} -m pip install .
+  noarch: python
+
+requirements:
+  host:
+  - python >=3.10
+  - setuptools>=61
+  - setuptools-scm>=6.2
+  - pip
+  run:
+  - python >=3.10
+  - anndata >=0.10.8
+  - scanpy >=1.10.3
+  - scvelo >=0.3.2
+  - scvi-tools <1.2.1,>=1.0.0
+  - scikit-learn >=0.21.2
+  - torchode >=0.1.6
+  - cellrank >=2.0.0
+  - matplotlib >=3.7.3
+  - pandas >=2.0.3
+  - seaborn >=0.13.2
+  - numpy >=1.25.2
+  - scipy <1.16.0,>=1.11.1
+  - pytorch <2.6.0
+  - rich >=10.0.0
+  - scanpy  # extra == "tutorials"
+  - matplotlib  # extra == "tutorials"
+
+tests:
+- python:
+    imports:
+    - regvelo
+    pip_check: true
+
+about:
+  summary: Estimation of RNA velocity with variational inference.
+  description: "# RegVelo: gene-regulatory-informed dynamics of single cells\n\n<img src=\"https://github.com/theislab/regvelo/blob/main/docs/_static/img/overview_fig.png?raw=true\" alt=\"RegVelo\" width=\"600\" />\n\n**RegVelo** is an end-to-end framework to infer regulatory cellular dynamics through coupled splicing dynamics. \nSee our [RegVelo manuscript](https://www.biorxiv.org/content/10.1101/2024.12.11.627935v1) and [documentation](https://regvelo.readthedocs.io/en/latest/index.html) to learn more. \n\nFeel free to open an [issue](https://github.com/theislab/regvelo/issues/new) if you encounter a bug, need our help or just want to make a comment/suggestion.\n\nRegVelo's key applications\n--------------------------\n- Estimate RNA velocity governed by gene regulation.\n- Infer latent time to indicate the cellular differentiation process.\n- Estimate intrinsic and extrinsic velocity uncertainty [Gayoso et al. (2024)](https://www.nature.com/articles/s41592-023-01994-w).\n- Estimate regulon perturbation effects via CellRank framework ([Lange et al. (2022)](https://www.nature.com/articles/s41592-021-01346-6), [Weiler et al. (2024)](https://www.nature.com/articles/s41592-024-02303-9)).\n\n\n## Getting started\n\nWe have [tutorials](https://regvelo.readthedocs.io/en/latest/tutorials/index.html) to help you get started.\n\n\n## Installation\n\nYou need to have Python 3.10 or newer installed on your system. Since `regvelo` is not on PyPI yet, please use option-2 for now to install.\n\nThere are several options to intall regvelo:\n\n1. Install the latest release of `regvelo` from PyPI (TODO) via\n\n```bash\n  pip install regvelo\n```\n\n2. Install the latest development version via\n\n```bash\n  pip install git+https://github.com/theislab/regvelo.git@main\n```\n\n## Citation\n\nIf you find RegVelo useful for your research, please consider citing our work as:\n\n```\n  @article{wang2024regvelo,\n    title={RegVelo: gene-regulatory-informed dynamics of single cells},\n    author={Wang, Weixu and Hu, Zhiyuan and Weiler, Philipp and Mayes, Sarah and Lange, Marius and Wang, Jingye and Xue, Zhengyuan and Sauka-Spengler, Tatjana and Theis, Fabian J},\n    journal={bioRxiv},\n    pages={2024--12},\n    year={2024},\n    publisher={Cold Spring Harbor Laboratory}\n  }\n```\n\n"
+  license: BSD-3-Clause
