@@ -33,6 +33,7 @@ requirements:
   - seaborn >=0.13.2
   - numpy >=1.25.2
   - scipy <1.16.0,>=1.11.1
+  - jaxlib >=0.4.3,<0.6 cuda* # workaround for scvi-tools jaxlib issue
   - pytorch <2.6.0
   - rich >=10.0.0
   - scanpy  # extra == "tutorials"
@@ -42,7 +43,7 @@ tests:
 - python:
     imports:
     - regvelo
-    pip_check: true
+    pip_check: false
 
 about:
   summary: Estimation of RNA velocity with variational inference.
