@@ -1,0 +1,37 @@
+context:
+  version: 0.4.0
+  build_number: 0
+
+package:
+  name: streamlit-image-coordinates
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/s/streamlit-image-coordinates/streamlit_image_coordinates-${{ version }}.tar.gz
+    sha256: 3c6657df55ad48ba0bc62db4ca4374f762ada6595f390f4ca6fecf18e0a350b4
+
+build:
+  number: ${{ build_number }}
+  script: ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  noarch: python
+
+requirements:
+  host:
+    - python >=3.10
+    - pip
+    - uv-build >=0.8.4,<0.9.0
+  run:
+    - python >=3.10
+    - streamlit >=1.34
+
+tests:
+  - python:
+      imports:
+        - streamlit_image_coordinates
+      pip_check: true
+
+about:
+  homepage: https://github.com/blackary/streamlit-image-coordinates
+  repository: https://github.com/blackary/streamlit-image-coordinates
+  license: MIT
+  summary: Streamlit component that displays an image and returns click coordinates.
